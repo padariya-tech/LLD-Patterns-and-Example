@@ -17,6 +17,8 @@ doesn't change; the algorithm to reach the destination does.
 You need one task done in **multiple interchangeable ways**
 (discounts, sorting, payments, compression...). Naive fix: one class,
 one giant `if/elif`.
+Interface = what operations are required.
+Composition = how one object uses another object.
 
 ```python
 class DiscountCalculator:
