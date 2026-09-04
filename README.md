@@ -1,0 +1,1 @@
+# LLD-Patterns-and-Example
