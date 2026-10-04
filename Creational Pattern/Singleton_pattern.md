@@ -50,7 +50,9 @@ There are several ways to implement this in Python — here are the
 main ones:
 
 ### Method 1: Override `__new__` (most common, classic OOP way)
+__new__() is responsible for creating the object.
 
+__init__() is responsible for initializing the object.
 ```python
 class ConfigManager:
     _instance = None

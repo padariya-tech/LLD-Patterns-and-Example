@@ -135,3 +135,29 @@ class EmployeeDiscount(DiscountStrategy):
 **TL;DR:** Conditional logic for choosing behavior → extract each
 branch into its own class behind a common interface → context
 delegates to whichever one it holds → swap freely, extend freely.
+
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                         1. STRATEGY                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   Context                                                           │
+│   PaymentProcessor                                                  │
+│        │                                                            │
+│        │ HAS-A                                                      │
+│        ▼                                                            │
+│   PaymentStrategy ◄────────────── Interface                         │
+│        ▲                                                            │
+│        │                                                            │
+│   ┌────┼──────────┐                                                 │
+│   │    │          │                                                 │
+│  UPI  Card      PayPal                                              │
+│                                                                     │
+│   Purpose: interchangeable behavior / algorithm                     │
+│   Key idea: composition + delegation                                │
+│   Runtime: strategy can be changed                                  │
+│                                                                     │
+│   processor.set_strategy(CardPayment())                             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘

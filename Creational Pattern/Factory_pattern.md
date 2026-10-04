@@ -163,3 +163,30 @@ class Bird(Animal):
 everywhere, centralize it in one factory → client code asks for
 *what* it needs via an interface, factory decides *which* concrete
 class to build.
+
+
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                          2. FACTORY                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│                    Client                                           │
+│                      │                                              │
+│                      │ "UPI"                                        │
+│                      ▼                                              │
+│               PaymentFactory                                        │
+│                      │                                              │
+│               ┌──────┼───────┐                                      │
+│               │      │       │                                      │
+│               ▼      ▼       ▼                                      │
+│              UPI    Card    PayPal                                  │
+│                                                                     │
+│   Purpose: object creation                                          │
+│   Key question: "Which object should I create?"                     │
+│                                                                     │
+│   Factory + Strategy:                                               │
+│                                                                     │
+│   Client → Factory → Strategy → Context                             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘

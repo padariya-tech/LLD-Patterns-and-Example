@@ -189,3 +189,29 @@ manager.set_next(DirectorSupport())
 handling a request, build a chain of small handler classes — each
 decides to handle the request or forward it to the next link — so
 senders don't need to know who (if anyone) will end up handling it.
+
+
+                         ┌──────────────────────┐
+                         │   CommonHandler      │
+                         │      (ABC)            │
+                         ├──────────────────────┤
+                         │ - next_handler       │
+                         │                      │
+                         │ + set_handler()      │
+                         │ + pass_to_next()     │
+                         │ + handle()           │
+                         └──────────┬───────────┘
+                                    │
+                       inheritance  │
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+              ▼                     ▼                     ▼
+      ┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+      │ L1Handler    │      │ L2Handler    │      │ L3Handler    │
+      ├──────────────┤      ├──────────────┤      ├──────────────┤
+      │ handle()     │      │ handle()     │      │ handle()     │
+      └──────┬───────┘      └──────┬───────┘      └──────┬───────┘
+             │                     │                     │
+             │ next_handler        │ next_handler        │
+             ▼                     ▼                     ▼
+          L2Handler              L3Handler              L4Handler

@@ -166,3 +166,37 @@ station.set_temperature(35)   # now notifies all 3
 **TL;DR:** Instead of hardcoding calls to every dependent object,
 Subject maintains a list of Observers and notifies them all through
 one common interface → add/remove listeners freely, zero coupling.
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                          3. OBSERVER                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│                         Subject                                     │
+│                           Order                                     │
+│                            │                                        │
+│                   HAS-A collection of                               │
+│                           │                                        │
+│          ┌────────────────┼────────────────┐                         │
+│          ▼                ▼                ▼                         │
+│     EmailObserver     SMSObserver    DashboardObserver              │
+│          │                │                │                         │
+│          └────────────────┼────────────────┘                         │
+│                           ▲                                          │
+│                           │ implements Observer                       │
+│                       Observer                                       │
+│                                                                     │
+│   Order.update_status()                                             │
+│          │                                                          │
+│          ▼                                                          │
+│   notify_observers()                                                │
+│          │                                                          │
+│     ┌────┼───────────────┐                                          │
+│     ▼    ▼               ▼                                          │
+│   Email SMS          Dashboard                                      │
+│                                                                     │
+│   Purpose: one-to-many notification                                 │
+│   Key idea: Subject doesn't know concrete observers                 │
+│   Runtime: observers can be added/removed                            │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘

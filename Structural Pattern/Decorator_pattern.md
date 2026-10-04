@@ -164,3 +164,37 @@ print(order.cost())          # 80
 **TL;DR:** Instead of subclassing for every feature combination, wrap
 the object in decorator classes that share its interface → stack any
 combination of behaviors at runtime, no class explosion.
+
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                         4. DECORATOR                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│                        Beverage                                     │
+│                           ▲                                         │
+│             ┌─────────────┴─────────────┐                           │
+│             │                           │                           │
+│       Concrete Component           Decorator                        │
+│             │                           │                           │
+│           Latte                   HAS-A Beverage                    │
+│                                         │                           │
+│                              ┌──────────┼──────────┐                │
+│                              ▼          ▼          ▼                │
+│                            Milk     Caramel    WhippedCream          │
+│                                                                     │
+│   Runtime wrapping:                                                 │
+│                                                                     │
+│   Latte                                                             │
+│     ↓                                                               │
+│   Milk(Latte)                                                       │
+│     ↓                                                               │
+│   Caramel(Milk(Latte))                                              │
+│     ↓                                                               │
+│   WhippedCream(Caramel(Milk(Latte)))                                │
+│                                                                     │
+│   Purpose: dynamically add responsibilities/behavior                │
+│   Key idea: IS-A + HAS-A                                            │
+│   Avoids: class explosion                                           │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
